@@ -14,6 +14,6 @@ $('document').ready(function() {
 		
 		});
 	
+	$('#log').load('log.php');
 	
-	
-	});
+});

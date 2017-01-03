@@ -54,10 +54,7 @@ include_once 'functions.php';
                 	<tr><th>Task</th><th>Start</th><th>End</th><th>Time</th><th colspan="2">Controls</th></tr>
                 </thead>
                 
-                <tbody><tr><td>Data</td><td>DAta</td><td>Data</td><td>Data</td>
-                	<td><button type="submit" class="btn btn-primary"><?php echo i('stop'); ?></button></td>
-                    <td><button type="submit" class="btn btn-danger"><?php echo i('times'); ?></button></td>
-                    </tr></tbody>
+                <tbody id="log"></tbody>
             
             </table>
             
