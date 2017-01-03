@@ -29,7 +29,7 @@ include_once 'functions.php';
                 </div>
                 
                 <div class="col-xs-6 text-right">
-                	Total Time:
+                	Total Time: <span id="tally"></span>
                 </div>
                 
             </header><!-- End of header row -->
@@ -37,7 +37,7 @@ include_once 'functions.php';
             <div class="row">
             	<form id="form-new">
                     <div class="col-xs-10">
-                        <input id="task" name="task" class="form-control" placeholder="Enter new task name ..." type="text">
+                        <input id="name" name="name" class="form-control" placeholder="Enter new task name ..." type="text">
                     </div>
                     
                     <div class="col-xs-2">

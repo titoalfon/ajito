@@ -12,7 +12,12 @@ function date_nice($date) {
 function time_nice($seconds) {
 	$h = floor($seconds/3600);	
 	$m = round(($seconds/60) - ($h * 60));
-	return $h . 'hrs: ' . $m . 'minutes';
+	return $h . 'hrs : ' . $m . 'minutes';
+}
+
+function save($data) {
+	$ajson = json_encode($data);
+	file_put_contents('data.json', $ajson);	
 }
 
 
