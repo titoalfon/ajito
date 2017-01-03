@@ -6,6 +6,18 @@ krsort($data);
 
 switch($_GET['mode']) {
 	
+	case "remove":
+		$id = $_GET['id'];
+		$data[$id]['status'] = 2;
+		save($data);
+		break;
+	
+	case "stop":
+		$id = $_GET['id'];
+		$data[$id]['date_end'] = time();
+		save($data);
+		break;
+	
 	case "new":
 		$time = time();
 		$data[$time]['id'] = $time;
@@ -25,7 +37,10 @@ switch($_GET['mode']) {
 		break;
 	
 	case "build":
-		foreach($data as $task) { ?>
+		foreach($data as $task) {
+			if($task['status'] == 1) {
+			
+			 ?>
 	
 		<tr>
 			<td><?php echo $task['name'] ;?></td>
@@ -40,10 +55,10 @@ switch($_GET['mode']) {
 					}
 				?>
 			</td>
-			<td><button type="submit" class="btn btn-primary"><?php echo i('stop'); ?></button></td>
-			<td><button type="submit" class="btn btn-danger"><?php echo i('times'); ?></button></td>
+			<td><button type="submit" data-id="<?=$task['id']?>" class="btn btn-primary btn-stop"><?php echo i('stop'); ?></button></td>
+			<td><button type="submit" data-id="<?=$task['id']?>" class="btn btn-danger btn-remove"><?php echo i('times'); ?></button></td>
 		</tr>
-	<?php  } 
+	<?php } } 
 		break;
 	
 	

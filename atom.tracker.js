@@ -15,7 +15,7 @@ $('document').ready(function() {
 			event.preventDefault();
 			var form = $(this);
 			var data = form.serialize();
-			
+			//New task
 			$.ajax({
 				url: 'log.php?mode=new',
 				data: data,
@@ -27,7 +27,32 @@ $('document').ready(function() {
 		
 		});
 	
+	// Stop task
+	$('#log').on('click', '.btn-stop', function(){
+		
+		var id = $(this).data('id');
+		$.ajax({
+			url: 'log.php?mode=stop&id=' + id,
+			success: function(){
+					build();
+				}	
+			
+		});
+			
+	});
 	
-	
+	//Remove task
+	$('#log').on('click', '.btn-remove', function(){
+		
+		var id = $(this).data('id');
+		$.ajax({
+			url: 'log.php?mode=remove&id=' + id,
+			success: function(){
+					build();
+				}	
+			
+		});
+			
+	});
 	
 });
