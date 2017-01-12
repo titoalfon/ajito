@@ -65,7 +65,7 @@ switch($_GET['mode']) {
 						}
 					?>
 				</td>
-				<td class="btn-col"><button type="submit" data-id="<?=$task['id']?>" class="btn btn-primary btn-stop" <?=($task['end_time'] != '')? 'disabled' : '';?>><?php echo i('stop'); ?></button></td>
+				<td class="btn-col"><button type="submit" data-id="<?=$task['id']?>" class="btn btn-primary btn-stop" <?=($task['date_end'] != '')? 'disabled' : '';?>><?php echo i('stop'); ?></button></td>
 				<td class="btn-col"><button type="submit" data-id="<?=$task['id']?>" class="btn btn-danger btn-remove"><?php echo i('times'); ?></button></td>
 			</tr>
 	<?php } } } 

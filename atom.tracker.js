@@ -10,7 +10,15 @@ function build() {
 
 
 $('document').ready(function() {
+	"use strict";
 	build();
+	
+	setInterval(function() {
+		
+			build();
+		
+		}, 30000);
+	
 	$('#form-new').submit(function(event) {
 			event.preventDefault();
 			var form = $(this);
