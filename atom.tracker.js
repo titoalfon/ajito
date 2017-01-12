@@ -3,21 +3,45 @@ function tally() {
 	$('#tally').load('log.php?mode=tally');
 }
 
-function build() {
-	$('#log').load('log.php?mode=build');
+function build(mode) {
+	$('#log').load('log.php?mode=' + mode);
 	tally();
 }
 
 
 $('document').ready(function() {
 	"use strict";
-	build();
+	build('build');
 	
 	setInterval(function() {
+		var mode = $('#btn-mode').data('mode');
+		if(mode == 'restore') {
+			build('build');
+		} else {
+			build('restore');
+		}
+	}, 30000);
 		
-			build();
+	$('#btn-mode').on('click', function(event) {
+		event.preventDefault();
+		var mode = $(this).data('mode');
 		
-		}, 30000);
+		if(mode == 'restore') {
+			
+			build('restore');
+			$('#lbl-mode').html('Live');
+			$(this).data('mode', 'live');
+			
+		} else {
+			
+			build('build');
+			$('#lbl-mode').html('Restore');
+			$(this).data('mode', 'restore');
+		}
+			
+		
+	});
+		
 	
 	$('#form-new').submit(function(event) {
 			event.preventDefault();
@@ -28,7 +52,7 @@ $('document').ready(function() {
 				url: 'log.php?mode=new',
 				data: data,
 				success: function() {
-					build();	
+					build('build');	
 				}
 				
 				});
@@ -42,7 +66,21 @@ $('document').ready(function() {
 		$.ajax({
 			url: 'log.php?mode=stop&id=' + id,
 			success: function(){
-					build();
+					build('build');
+				}	
+			
+		});
+			
+	});
+	
+	//Restore task
+	$('#log').on('click', '.btn-restore', function(){
+		
+		var id = $(this).data('id');
+		$.ajax({
+			url: 'log.php?mode=status&id=' + id,
+			success: function(){
+					build('restore');
 				}	
 			
 		});
@@ -56,7 +94,7 @@ $('document').ready(function() {
 		$.ajax({
 			url: 'log.php?mode=remove&id=' + id,
 			success: function(){
-					build();
+					build('build');
 				}	
 			
 		});

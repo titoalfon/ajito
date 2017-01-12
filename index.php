@@ -35,7 +35,7 @@ include_once 'functions.php';
         
         	<header class="row">
                 <div class="col-xs-6">
-                	<a href="#">Enter Restore Mode</a>
+                	<a data-mode="restore" id="btn-mode" href="#">Enter <span id="lbl-mode">Restore</span> Mode</a>
                 </div>
                 
                 <div class="col-xs-6 text-right">

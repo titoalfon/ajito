@@ -8,11 +8,18 @@ if(is_array($data)) {
 
 switch($_GET['mode']) {
 	
+	case "status":
+		$id = $_GET['id'];
+		$data[$id]['status'] = 1;
+		save($data);
+		break;
+		
 	case "remove":
 		$id = $_GET['id'];
 		$data[$id]['status'] = 2;
 		save($data);
 		break;
+		
 	
 	case "stop":
 		$id = $_GET['id'];
@@ -67,6 +74,32 @@ switch($_GET['mode']) {
 				</td>
 				<td class="btn-col"><button type="submit" data-id="<?=$task['id']?>" class="btn btn-primary btn-stop" <?=($task['date_end'] != '')? 'disabled' : '';?>><?php echo i('stop'); ?></button></td>
 				<td class="btn-col"><button type="submit" data-id="<?=$task['id']?>" class="btn btn-danger btn-remove"><?php echo i('times'); ?></button></td>
+			</tr>
+	<?php } } } 
+		break;
+		
+		case "restore":
+		if(is_array($data)) {
+			foreach($data as $task) {
+				if($task['status'] == 2) {
+				
+				 ?>
+		
+			<tr>
+				<td><?php echo $task['name'] ;?></td>
+				<td><?php echo date_nice($task['date_start']) ;?></td>
+				<td><?php if($task['date_end'] != "") echo date_nice($task['date_end']) ;?></td>
+				<td>
+					<?php
+						if($task['date_end'] == "") {
+							echo time_nice(time() - $task['date_start']);	
+						} else {
+							echo time_nice($task['date_end'] - $task['date_start']);	
+						}
+					?>
+				</td>
+				<td class="btn-col"></td>
+				<td class="btn-col"><button type="submit" data-id="<?=$task['id']?>" class="btn btn-info btn-restore"><?php echo i('refresh'); ?></button></td>
 			</tr>
 	<?php } } } 
 		break;
